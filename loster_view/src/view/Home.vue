@@ -1,10 +1,5 @@
 <template>
-  <el-container :style="{backgroundImage:'url('+require('../assets/bg3.jpg')+')'}">
-    <el-main>
-    <el-header>
-    <Header></Header>
-    </el-header>
-
+  <div>
     <el-card class="boxcard banner" shadow="never" :style="{backgroundImage:'url('+background+')'}">
 
     <div class="subtitle">
@@ -28,25 +23,20 @@
         <SlideBar></SlideBar>
     </el-row>
 
-    <BackTop></BackTop> 
-    </el-main>
-    
-    <el-footer>Footer</el-footer>
-</el-container>
+   
+</div>
 </template>
 
 
 <script>
 // 导入组件
 import Header   from '../components/Header.vue'
-import BackTop  from '../components/BackTop.vue'
 import SlideBar from '../components/SlideBar'
 import EssayBox from '../components/EssayBox'
 export default {
     name: 'Home',
     components: {
         Header,
-        BackTop,
         SlideBar,
         EssayBox,
     },
@@ -59,46 +49,7 @@ export default {
 </script>
 
 <style lang="less" scoped>  
-.back-top.hidden {
-    transform: translate(-150%,0);
-}
 
-.el-container {
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;   
-}
-
-.el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: white;
-    text-align: center;
-    line-height: 60px;
-    padding: 0;
-    background: #212121; 
-}
-
-.el-footer{
-    margin-top: 30px;
-    height: 100px !important;
-}
-
-.el-header {
-    position:fixed;
-    width: 100%;
-    transition:all .4s;
-    background-color: rgba(0, 0, 0, 0);
-    z-index: 2;
-}
-.el-main {
-    background: #ced0d100;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-    padding: 0 !important;
-  
-}
 .boxcard {
     height: 100vh;
     background-repeat: no-repeat;
@@ -157,12 +108,6 @@ export default {
     cursor: pointer;
 }
 
-.down {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-user-select: none;
-    -moz-user-focus: none;
-    -moz-user-select: none;
-}
 
     
 </style>

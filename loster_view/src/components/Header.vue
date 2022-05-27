@@ -1,9 +1,11 @@
 <template>
   <div class="header">
         <div class="left">
+           <router-link to="/" class="index">
             <div class="logo">
                 dzbook
             </div>
+           </router-link>
         </div>
 
         <div class="right">
@@ -78,19 +80,13 @@
                     <el-dropdown-item>蚵仔煎</el-dropdown-item>
             </el-dropdown-menu>
             </el-dropdown>
-
+            
+            <router-link to="/essay"> 
                <el-dropdown>
-            <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>黄金糕</el-dropdown-item>
-                    <el-dropdown-item>狮子头</el-dropdown-item>
-                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item>双皮奶</el-dropdown-item>
-                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
-            </el-dropdown-menu>
-            </el-dropdown>
+               <span class="el-dropdown-link">下拉菜单 </span>
+               </el-dropdown>
+            </router-link>
+
         </div>
         </div>
 
@@ -169,6 +165,10 @@ methods: {
 
 .logo{
     font-size:30px;
+    color:white;
+}
+.index{
+     text-decoration: none;
 }
 
 .menu{

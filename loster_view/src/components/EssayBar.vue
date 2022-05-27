@@ -77,7 +77,7 @@ export default {
 .el-card{
     margin-bottom: 15px;
     line-height:20px;
-    border:1px solid rgb(137, 134, 134);
+    border:2px solid rgb(137, 134, 134);
     transition: all 0.3s;
 }
 // 阴影效果
@@ -124,8 +124,9 @@ export default {
     letter-spacing: 0px;
 }
 .author {
-    border-bottom: 1px solid #000;
+    border-bottom:1px solid rgb(137, 134, 134);
     padding-bottom: 5px !important;
+    line-height:15px !important;
 }
 .author i{
     font-size:16px;
