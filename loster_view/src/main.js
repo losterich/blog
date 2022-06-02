@@ -9,8 +9,10 @@ import VueTypedJs from 'vue-typed-js'
 
 // 按需引入elementUi组件
 import {Container, Header, Main, Footer, Dropdown, DropdownItem,
-DropdownMenu, Card, Row, Col,Tag,Drawer,Collapse ,CollapseItem,
-Avatar,Form,FormItem,Input} from 'element-ui'
+DropdownMenu, Card, Row, Col, Tag, Drawer, Collapse, CollapseItem,
+Avatar, Form, FormItem, Input, Button, Skeleton, Divider, Popover,
+Breadcrumb, BreadcrumbItem,
+} from 'element-ui'
 // elementUi 样式文件
 import 'element-ui/lib/theme-chalk/index.css'
 // elementUi断点隐藏
@@ -20,8 +22,6 @@ import 'element-ui/lib/theme-chalk/display.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 // animate动画库
 import 'animate.css'
-
-
 
 // 组件应用
 Vue.component(Container.name, Container)
@@ -42,7 +42,12 @@ Vue.component(Avatar.name, Avatar)
 Vue.component(Form.name, Form)
 Vue.component(FormItem.name, FormItem)
 Vue.component(Input.name, Input)
-
+Vue.component(Button.name, Button)
+Vue.component(Skeleton.name, Skeleton)
+Vue.component(Divider.name, Divider)
+Vue.component(Popover.name, Popover)
+Vue.component(Breadcrumb.name, Breadcrumb)
+Vue.component(BreadcrumbItem.name, BreadcrumbItem)
 
 Vue.config.productionTip = false
 

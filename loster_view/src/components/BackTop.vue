@@ -1,9 +1,9 @@
 <template>
 
 <a href="#top">
-    <el-card class="up" shadow="always" :body-style="{padding:0,paddingTop:'3px',paddingRight:'1px',}">
-    <i class="el-icon-top"></i>
-    </el-card>
+<el-card class="up" shadow="always" :body-style="{padding:0,paddingTop:'3px',paddingRight:'1px',}">
+<i class="el-icon-top"></i>
+</el-card>
 </a>
 
 </template>  

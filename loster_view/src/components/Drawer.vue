@@ -1,10 +1,8 @@
 <template>
 
 <el-drawer title="我是标题" :visible.sync="drawer" :with-header="false" :style="{transition:'none'}" size="230px">
-  <span>我来啦!1111</span>
+<span>我来啦!1111</span>
 </el-drawer>
-
-
 
 </template>
 

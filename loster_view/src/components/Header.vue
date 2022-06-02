@@ -82,9 +82,9 @@
             </el-dropdown>
             
             <router-link to="/essay"> 
-               <el-dropdown>
-               <span class="el-dropdown-link">下拉菜单 </span>
-               </el-dropdown>
+            
+               <span >下拉菜单 </span>
+         
             </router-link>
 
         </div>

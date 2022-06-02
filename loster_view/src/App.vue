@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
-      <el-container :style="{backgroundImage:'url('+require('./assets/bg3.jpg')+')'}">
+    <div id="app">
+    <el-container :style="{backgroundImage:'url('+require('./assets/bg3.jpg')+')'}">
     <el-main>
+
     <el-header>
     <Header></Header>
     </el-header>
@@ -9,13 +10,15 @@
     <router-view></router-view>
 
     <Drawer></Drawer>
+
     <BackTop></BackTop> 
 
     </el-main>
-    
+
     <el-footer>Footer</el-footer>
-</el-container>
-  </div>
+    
+    </el-container>
+    </div>
 </template>
 
 <script>
@@ -68,7 +71,8 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-position: center;   
+    background-position: center;
+    min-height: 100vh;   
 }
 
 .el-header, .el-footer {
@@ -112,4 +116,5 @@ a{
     -moz-user-focus: none;
     -moz-user-select: none;
 }
+
 </style>

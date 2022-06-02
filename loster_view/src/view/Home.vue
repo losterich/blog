@@ -1,30 +1,30 @@
 <template>
   <div>
-    <el-card class="boxcard banner" shadow="never" :style="{backgroundImage:'url('+background+')'}">
+  <el-card class="boxcard banner" shadow="never" :style="{backgroundImage:'url('+background+')'}">
 
-    <div class="subtitle">
-    <p class="name" >loster</p>
-    <p class="saying">
-    <!-- infinite loop -->
-    <vue-typed-js :strings="['无穷的远方与无尽的人们，都与我有关  ——鲁迅', '当恩怨各一半，我该怎么圈览']" :loop="true" @onComplete="doSmth()" :typeSpeed="200" :backSpeed="40">
-    <h2><span class="typing"></span></h2>
-    </vue-typed-js> 
-    </p>
+  <div class="subtitle">
+  <p class="name" >loster</p>
+  <p class="saying">
+  <!-- infinite loop -->
+  <vue-typed-js :strings="['无穷的远方与无尽的人们，都与我有关  ——鲁迅', '当恩怨各一半，我该怎么圈览']" :loop="true" @onComplete="doSmth()" :typeSpeed="200" :backSpeed="40">
+  <h2><span class="typing"></span></h2>
+  </vue-typed-js> 
+  </p>
+  </div>
 
-    </div>
+  <a href="#down" class="down"><p class="tip-arrow">  <i class=" el-icon-arrow-down animate__animated animate__bounce  animate__infinite "></i></p></a>
 
-    <a href="#down" class="down"><p class="tip-arrow">  <i class=" el-icon-arrow-down animate__animated animate__bounce  animate__infinite "></i></p></a>
-    
-    </el-card>
-      
-    <p id="down"></p>
-    <el-row class="content">
-        <EssayBox></EssayBox>
-        <SlideBar></SlideBar>
-    </el-row>
+  </el-card>
 
-   
-</div>
+  <p id="down"></p>
+
+  <el-row class="content">
+  <EssayBox></EssayBox>
+  <SlideBar></SlideBar>
+  </el-row>
+  
+  </div>
+
 </template>
 
 

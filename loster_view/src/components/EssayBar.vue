@@ -1,68 +1,54 @@
 <template>
 
-<div>
+    <div>
 
-
-
- <el-card  :body-style="{padding:'3px'}">
-     
+    <el-card  :body-style="{padding:'3px'}">
     <el-row>
-        
-        <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
-        
-        <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
-        <el-row> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
-        <el-row>
-            <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
-
-        </el-row>
-        <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
-        
-        </el-col>
-       
-    </el-row>
-</el-card>
-
-
-
- <el-card  :body-style="{padding:'3px'}">
-     
+    <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+    <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
+    <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
+    <el-row> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
     <el-row>
-        <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
-        <el-row><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-5-17</i> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
-        <el-row>
-            <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
-
-        </el-row>
-        <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
-        
-        </el-col>
-       
+    <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
     </el-row>
-</el-card>
+    <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
+    </el-col>
+    </el-row>
 
-
- <el-card  :body-style="{padding:'3px'}">
-     
+    </el-card>
+    <el-card  :body-style="{padding:'3px'}">
     <el-row>
-        <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
-        <el-row><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-5-17</i> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
-        <el-row>
-            <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
-
-        </el-row>
-        <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
-        
-        </el-col>
-       
+    <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+    <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
+    <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
+    <el-row> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
+    <el-row>
+    <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
     </el-row>
-</el-card>
+    <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
+    </el-col>
+    </el-row>
+    </el-card>
+
+    <el-card  :body-style="{padding:'3px'}">
+    <el-row>
+    <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+    <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
+    <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
+    <el-row> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
+    <el-row>
+    <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
+    </el-row>
+    <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
+    </el-col>
+    </el-row>
+    </el-card>
 
 
-</div>
+   
+
+
+    </div>
 
 
 </template>
