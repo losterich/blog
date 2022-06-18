@@ -1,121 +1,91 @@
 <template>
-  <div class="header">
-        <div class="left">
-           <router-link to="/" class="index">
-            <div class="logo">
-                dzbook
-            </div>
-           </router-link>
-        </div>
+    <div class="header">
+    <div class="left">
+    <router-link to="/" class="index">
+    <div class="logo">
+    {{title}}
+    </div>
+    </router-link>
+    </div>
 
-        <div class="right">
-            <div class="menu hidden-md-and-up" @click="drawer()">
-                <i class="bi-list-ul"></i>
-            </div>
-
-           
-            
-        <div class="dropdown hidden-sm-and-down">
-                        <el-dropdown >
-            <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item icon="el-icon-plus">黄金糕</el-dropdown-item>
-                    <el-dropdown-item>狮子头</el-dropdown-item>
-                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item>双皮奶</el-dropdown-item>
-                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
-            </el-dropdown-menu>
-            </el-dropdown>
-
-               <el-dropdown>
-            <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>黄金糕</el-dropdown-item>
-                    <el-dropdown-item>狮子头</el-dropdown-item>
-                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item>双皮奶</el-dropdown-item>
-                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
-            </el-dropdown-menu>
-            </el-dropdown>
-
-               <el-dropdown>
-            <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>黄金糕</el-dropdown-item>
-                    <el-dropdown-item>狮子头</el-dropdown-item>
-                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item>双皮奶</el-dropdown-item>
-                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
-            </el-dropdown-menu>
-            </el-dropdown>
-
-               <el-dropdown>
-            <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>黄金糕</el-dropdown-item>
-                    <el-dropdown-item>狮子头</el-dropdown-item>
-                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item>双皮奶</el-dropdown-item>
-                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
-            </el-dropdown-menu>
-            </el-dropdown>
-
-               <el-dropdown>
-            <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item icon="el-icon-plus">黄金糕</el-dropdown-item>
-                    <el-dropdown-item>狮子头</el-dropdown-item>
-                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item>双皮奶</el-dropdown-item>
-                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
-            </el-dropdown-menu>
-            </el-dropdown>
-            
-            <router-link to="/essay"> 
-            
-               <span >下拉菜单 </span>
-         
-            </router-link>
-
-        </div>
-        </div>
-
-  </div>
+    <div class="right">
+    <div class="menu hidden-md-and-up" @click="drawer()">
+    <i class="bi-list-ul"></i>
+    </div>
 
 
-  
+    <div class="dropdown hidden-sm-and-down">
+    <el-dropdown v-for="item in noChildren" :key="item.path">
+    <span class="el-dropdown-link">
+    <i :class="item.icon"></i>{{item.label}}<i class=" el-icon--right"></i>
+    <hr>
+    </span>
+    </el-dropdown>
+
+    <el-dropdown v-for="item in hasChildren" :key="item.path">
+    <span class="el-dropdown-link">
+    <i :class="item.icon"></i>{{item.label}}<i class="el-icon-arrow-down el-icon--right"></i>
+    <hr>
+    </span>
+    <el-dropdown-menu slot="dropdown" >
+    <el-dropdown-item :icon="sub_item.icon" v-for="(sub_item) in item.children" :key="sub_item.path">{{sub_item.label}}</el-dropdown-item>
+    </el-dropdown-menu>
+    </el-dropdown>
+
+    <router-link to="/cates"> 
+
+    <span >分类 </span>
+
+    </router-link>
+
+    <router-link to="/essay"> 
+
+    <span > 文章 </span>
+
+    </router-link>
+
+    </div>
+    </div>
+
+    </div>
+
 </template>
 
 <script>
-import Drawer   from './Drawer.vue'
+// 数据
+import {headerData} from '../api/data'
+import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
 
+
+// 组件
+import Drawer   from './Drawer.vue'
 export default {
 name: 'Header',
 components: {
     Drawer
 },
 data() {
-    
-},  
-methods: {
-    drawer(){
-        let drawer = true
-        this.$bus.$emit('drawer',drawer)
+    return {
+        title: '',
+        menu:['1']
     }
-},
-    mounted() {       
+},  
+mounted() {
+    	  mapActions('data',{headerData:'headerData'})
+        const x = {...mapGetters('data',['data'])}
+        console.log(x,'wwwwwww')
+    console.log(this.$store.module)
+    headerData().then(res =>{
+        const {code,data} = res.data
+        if(code == 0){
+            let {menu,title} = data
+            this.menu = menu
+            this.title = title
+        }
+    })
+        
     // 页面滚动，导航栏效果
-    window.addEventListener('scroll', function () {
+    window.addEventListener('scroll', function () { 
         // 透明度变化
         const header = this.document.querySelector('.header')
         header.classList.toggle("opacityChange", this.scrollY > 0)
@@ -126,7 +96,22 @@ methods: {
         this.to = scrollTop;
         header.classList.toggle("hidden", !(scroll < 0))
     })
+},
+computed:{
+    noChildren(){
+        return this.menu.filter(item => !item.children)
+    },
+    hasChildren(){
+        return this.menu.filter(item =>  item.children)
+    },
+},
+methods: {
+    drawer(){
+        let drawer = true
+        this.$bus.$emit('drawer',drawer)
     }
+},
+    
 }
 </script>
 
@@ -144,18 +129,33 @@ methods: {
 .el-dropdown{
     height: 45px;
     line-height:45px;
-    margin-left: 10px;
+    margin-left:40px;
     color: white;
+    font-size: 17px;
 }
 
 .el-dropdown-menu {
     position:relative;
-    top:40px !important;
+    top:42px !important;
     
 }
 
 .el-dropdown-link {
     cursor: pointer;
+    position:relative;
+    
+}
+.el-dropdown-link hr{
+    height: 4px;
+    width: 0px;
+    background: #16ADF7;
+    border:none;
+    position:absolute;
+    top: 24px;
+}
+.el-dropdown-link:hover hr{
+    width:100%;
+   
 }
 
 .el-icon-arrow-down {
@@ -181,12 +181,21 @@ methods: {
     justify-content: space-between;
 }
 
-span i{
+span i:nth-child(1){
+    margin-right: 5px ;
+    font-size:17px;
+
+}
+
+span i:nth-child(2){
     font-size: 20px !important;
     position: relative;
     top: 3px;
     font-weight:1000 !important;
 }
+
+
+
 
 .el-dropdown-link:hover  i{
     transform:rotate(180deg);

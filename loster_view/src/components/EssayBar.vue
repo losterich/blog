@@ -2,7 +2,7 @@
 
     <div>
 
-    <el-card  :body-style="{padding:'3px'}">
+    <el-card :body-style="{padding:'3px'}">
     <el-row>
     <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
     <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
@@ -92,7 +92,7 @@ export default {
     overflow: hidden;
     display: -webkit-box; 
    -webkit-box-orient:vertical;
-   -webkit-line-clamp:2;
+   -webkit-line-clamp:1;
 }
 .text .el-row p{
     overflow: hidden;

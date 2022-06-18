@@ -6,7 +6,7 @@
   <p class="name" >loster</p>
   <p class="saying">
   <!-- infinite loop -->
-  <vue-typed-js :strings="['无穷的远方与无尽的人们，都与我有关  ——鲁迅', '当恩怨各一半，我该怎么圈览']" :loop="true" @onComplete="doSmth()" :typeSpeed="200" :backSpeed="40">
+  <vue-typed-js :strings="['无穷的远方与无尽的人们，都与我有关  ——鲁迅', '当恩怨各一半，我该怎么圈览']" :loop="true"  :typeSpeed="200" :backSpeed="40">
   <h2><span class="typing"></span></h2>
   </vue-typed-js> 
   </p>

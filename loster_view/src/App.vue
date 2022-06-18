@@ -66,7 +66,6 @@ html {
 }
 }
 
-
 .el-container {
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -116,5 +115,5 @@ a{
     -moz-user-focus: none;
     -moz-user-select: none;
 }
-
+    
 </style>

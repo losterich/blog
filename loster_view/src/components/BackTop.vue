@@ -13,7 +13,6 @@ name:'BackTop',
     mounted() {
     // 页面滚动，返回顶部效果
     window.addEventListener('scroll',function() {
-        console.log('ofiuerhui')
         const up = document.querySelector('.up')
         // 返回顶部的隐藏与显示
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
