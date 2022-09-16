@@ -14,12 +14,12 @@ export default{
     }
     },
     mutations:{
-        headerData (state,value){
-            state.headerData = value
+        headerData (state,value){ 
+           
         }
     },
     state: {
-        headerData:'',
+        headerData:'sasasa',
     },
     getters: {
         data(state){

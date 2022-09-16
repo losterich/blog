@@ -114,6 +114,7 @@ a{
     -webkit-user-select: none;
     -moz-user-focus: none;
     -moz-user-select: none;
+    text-decoration: none;
 }
     
 </style>

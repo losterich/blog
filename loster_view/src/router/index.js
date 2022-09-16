@@ -16,11 +16,13 @@ export default new VueRouter({
             path: '/',
             component:Home
         },
-        {
+        {   
+            name:'essay',
             path: '/essay',
             component:Essay
         },
-        {
+        {   
+            name:'cates',
             path: '/cates',
             component:Cates
         }

@@ -4,10 +4,10 @@
     <div class="card">
     <div class="blob"></div>
     <span class="img">
-    <img src="../assets/bg2.jpg">
-    <p>当恩怨各一半，我该怎么圈览,当灯笼血红染，寻仇已太晚</p>
+    <img :src="info.avatar">
+    <p>{{info.back}}</p>
     </span>
-    <h2>loster<br><span>行者常至，为者常成!</span></h2>
+    <h2>{{info.author}}<br><span>{{info.motto}}</span></h2>
     <p>
     <i class="el-icon-aim"></i>
     <i class="el-icon-mobile-phone"></i>
@@ -22,6 +22,16 @@
 
 export default {
     name: 'InfoBox',
+    data(){
+        return {
+            info:{
+                avatar:require('../assets/bg2.jpg'),
+                author:'loster',
+                back:'当恩怨各一半，我该怎么圈览,当灯笼血红染，寻仇已太晚',
+                motto:'行者常至，为者常成!'
+            }
+        }
+    },
     components: {
         
     },

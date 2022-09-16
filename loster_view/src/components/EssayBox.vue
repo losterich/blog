@@ -1,10 +1,8 @@
 <template>
    
-<el-col :xs="23" :sm="23" :md="15" :lg="13" :xl="11"  style="margin-top:15px">
+<el-col :xs="23" :sm="23" :md="15" :lg="11" :xl="9"  style="margin-top:15px">
     <el-card class="essaybox"  shadow="never" :body-style="{padding:'8px'}">
-    
-    <EssayBar></EssayBar>
-
+    <slot></slot>
     </el-card>
 </el-col>
 
@@ -23,5 +21,10 @@ export default {
 
 <style lang="less" scoped>
 
+@media screen and (min-width:768px){
+    .el-card{
+        padding: 10px;
+    }
+}
 
 </style>

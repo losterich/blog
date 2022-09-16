@@ -2,7 +2,7 @@
 
 <el-row>
 
-<el-col :xs="23" :sm="23" :md="15" :lg="13" :xl="11"  style="margin-top:15px">
+<el-col :xs="23" :sm="23" :md="15" :lg="11" :xl="11"  style="margin-top:15px">
 
 <el-card class="box">
 <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -45,4 +45,11 @@ export default {
 .box{
   margin-bottom:5px;
 }
+
+@media screen and (min-width:768px){
+    .essaybox{
+        padding: 10px;
+    }
+}
+
 </style>

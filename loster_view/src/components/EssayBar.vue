@@ -2,60 +2,34 @@
 
     <div>
 
-    <el-card :body-style="{padding:'3px'}">
-    <el-row>
-    <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-    <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
-    <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
-    <el-row> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
-    <el-row>
-    <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
-    </el-row>
-    <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
-    </el-col>
-    </el-row>
+    <router-link  v-for="(item, index) in essayData" :key="index" :to="{name:'essay',param:{essay_id,}}">
+        <el-card :body-style="{padding:'3px'}">
+        <el-row>
+        <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+        <el-row class="author"><i class="el-icon-user-solid">{{item.author}}</i> <i class="el-icon-time">{{item.date}}</i></el-row>
+        <el-row><h4>{{item.title}}</h4></el-row>
+        <el-row> <i class="el-icon-view">{{item.view_number}}</i> 
+        <i class="bi-hand-thumbs-up">{{item.likes}}</i> 
+        <i class="el-icon-chat-round">{{item.comment_number}}</i> 
+        </el-row>
+        <el-row>
+        <el-tag effect="dark" v-for="tag_item in item.tags" :key="tag_item">{{tag_item}}</el-tag>
+        </el-row>
+        <el-row><p>{{item.brief}}</p></el-row>
+        </el-col>
+        </el-row>
+        </el-card>
 
-    </el-card>
-    <el-card  :body-style="{padding:'3px'}">
-    <el-row>
-    <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-    <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
-    <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
-    <el-row> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
-    <el-row>
-    <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
-    </el-row>
-    <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
-    </el-col>
-    </el-row>
-    </el-card>
-
-    <el-card  :body-style="{padding:'3px'}">
-    <el-row>
-    <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-    <el-row class="author"><i class="el-icon-user-solid">loster</i> <i class="el-icon-time">2022-12-17</i></el-row>
-    <el-row><h4>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</h4></el-row>
-    <el-row> <i class="el-icon-view">1123</i> <i class="bi-hand-thumbs-up">1111</i> <i class="el-icon-chat-round">1341</i> </el-row>
-    <el-row>
-    <el-tag effect="dark">nodejs</el-tag> <el-tag effect="dark">vue</el-tag> <el-tag effect="dark">elementUi</el-tag>
-    </el-row>
-    <el-row><p>前言在写一个项目时用了easyswoole框架，需要用到批量更新方法，但是easyswoole没有去实现方法，只能自己封装</p></el-row>
-    </el-col>
-    </el-row>
-    </el-card>
-
-
-   
-
+    </router-link>
 
     </div>
-
 
 </template>
 
 <script>
 export default {
     name: 'EssayBar',
+    props:['essayData'],
 }
 </script>
 
@@ -117,17 +91,27 @@ export default {
 .author i{
     font-size:16px;
 }
+
 .text .el-row .el-tag{
-    padding: 0 1px;
+    padding: 0 2px;
     height: 18px;
     line-height:16px; 
     border-radius:3px;
+    margin-right: 6px;
 }
 .img{
     height: 130px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
+}
+
+
+@media screen and (min-width:768px){
+   .el-card:hover{
+   box-shadow: 6px 6px 4px #b3b3b3,
+              -6px -6px 4px #ffffff;
+   transform: scale(102%);
+}
 }
 </style>

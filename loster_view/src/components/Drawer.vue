@@ -2,11 +2,11 @@
 
 <el-drawer title="我是标题" style="padding:'10px'" :visible.sync="drawer" :with-header="false" :style="{transition:'none'}" size="240px">
 <div class="head">
- <el-avatar :size="85" src="https://empty" @error="errorHandler" :style="{background:'url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fq_70%2Fimages03%2F20200713%2F1ec56383d2a242028ad4050340ca01ae.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1657030068&t=959716dd7d0d5c5dc026310e3c4d7973)'}">
+ <el-avatar :size="85" src="https://empty" @error="errorHandler" :style="{background:'url('+info.avatar+')'}">
 
     </el-avatar>
 <div class="some-info">
-     <h2>loster<br><span>行者常至，为者常成!</span></h2>
+     <h2>{{info.author}}<br><span>{{info.motto}}</span></h2>
     <p>
     <i class="el-icon-aim"></i>
     <i class="el-icon-mobile-phone"></i>
@@ -16,27 +16,19 @@
 </div>
 
 <el-collapse accordion>
-  <el-collapse-item>
+  <el-collapse-item v-for="item in hasChildren" :key="item.label">
     <template slot="title">
-     <p><i class="header-icon el-icon-info"></i> 一致性 Consistency </p>
+     <p><i :class="item.icon"></i>{{item.label}}</p>
     </template>
-    <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-    <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+    <div v-for="sub_item in item.children" :key="sub_item.label">{{sub_item.label}}</div>
   </el-collapse-item>
- <el-collapse-item>
+  
+  <el-collapse-item v-for="item in noChildren" :key="item.label">
     <template slot="title">
-     <p><i class="header-icon el-icon-info"></i> 一致性 Consistency </p>
+     <p><i :class="item.icon"></i>{{item.label}}</p>
     </template>
-    <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-    <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
   </el-collapse-item>
-  <el-collapse-item>
-    <template slot="title">
-     <p><i class="header-icon el-icon-info"></i> 一致性 Consistency </p>
-    </template>
-    <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-    <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-  </el-collapse-item>
+
 </el-collapse>
 
 </el-drawer>
@@ -44,22 +36,56 @@
 </template>
 
 <script>
+import {headerData} from '../api/data'
+import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
 export default {
      data() {
       return {
         drawer:false,
+        info:{
+            avatar:require('../assets/bg2.jpg'),
+            author:'loster',
+            back:'当恩怨各一半，我该怎么圈览,当灯笼血红染，寻仇已太晚',
+            motto:'行者常至，为者常成!'
+            },
+        title: '',
+        menu:['1']
+        
+        
       };
     },
+computed:{
+    noChildren(){
+        return this.menu.filter(item => !item.children)
+    },
+    hasChildren(){
+        return this.menu.filter(item =>  item.children)
+    },
+}, 
+mounted() {
+    // 全局事件总线传递
+    this.$bus.$on('drawer',(data) => {
+            this.drawer = data
+    })
+   
+    const x = {...mapState('data',['headerData'])}
+    console.log(x,'wwwwwww')
+    console.log(this.$store.module)
+    headerData().then(res =>{
+        const {code,data} = res.data
+        if(code == 0){
+            let {menu,title} = data
+            this.menu = menu
+            this.title = title
+        }
+    })},
+
      methods: {
       errorHandler() {
         return true
       }
     },
-    mounted(){
-        this.$bus.$on('drawer',(data) => {
-            this.drawer = data
-        })
-    },
+  
     // 在组件销毁之前 解除占用 hello 事件
     beforeDestroy() {
         this.$bus.$off('drawer') // 解绑vm	上挂载的事件

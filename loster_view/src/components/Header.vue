@@ -28,21 +28,9 @@
     <hr>
     </span>
     <el-dropdown-menu slot="dropdown" >
-    <el-dropdown-item :icon="sub_item.icon" v-for="(sub_item) in item.children" :key="sub_item.path">{{sub_item.label}}</el-dropdown-item>
+    <router-link :to="{name:'cates',param:''}"> <el-dropdown-item :icon="sub_item.icon" v-for="(sub_item) in item.children" :key="sub_item.path">{{sub_item.label}}</el-dropdown-item></router-link>
     </el-dropdown-menu>
     </el-dropdown>
-
-    <router-link to="/cates"> 
-
-    <span >分类 </span>
-
-    </router-link>
-
-    <router-link to="/essay"> 
-
-    <span > 文章 </span>
-
-    </router-link>
 
     </div>
     </div>
@@ -69,11 +57,19 @@ data() {
         title: '',
         menu:['1']
     }
-},  
+}, 
+computed:{
+    noChildren(){
+        return this.menu.filter(item => !item.children)
+    },
+    hasChildren(){
+        return this.menu.filter(item =>  item.children)
+    },
+}, 
 mounted() {
-    	  mapActions('data',{headerData:'headerData'})
-        const x = {...mapGetters('data',['data'])}
-        console.log(x,'wwwwwww')
+   
+    const x = {...mapState('data',['headerData'])}
+    console.log(x,'wwwwwww')
     console.log(this.$store.module)
     headerData().then(res =>{
         const {code,data} = res.data
@@ -97,15 +93,9 @@ mounted() {
         header.classList.toggle("hidden", !(scroll < 0))
     })
 },
-computed:{
-    noChildren(){
-        return this.menu.filter(item => !item.children)
-    },
-    hasChildren(){
-        return this.menu.filter(item =>  item.children)
-    },
-},
+
 methods: {
+    // 全局事件总线，事件发布
     drawer(){
         let drawer = true
         this.$bus.$emit('drawer',drawer)
