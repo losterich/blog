@@ -6,7 +6,7 @@ const db = mysql.createPool({
     host:'127.0.0.1',
     user:'root',
     password:'password',
-    database:'dzbook_db_01'
+    database:'dzbook_db'
 })
 
 

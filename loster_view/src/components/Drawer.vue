@@ -1,12 +1,12 @@
 <template>
 
-<el-drawer title="我是标题" style="padding:'10px'" :visible.sync="drawer" :with-header="false" :style="{transition:'none'}" size="240px">
+<el-drawer title="我是标题"  :visible.sync="drawer" :with-header="false" :style="{transition:'none'}" size="240px">
 <div class="head">
- <el-avatar :size="85" src="https://empty" @error="errorHandler" :style="{background:'url('+info.avatar+')'}">
+ <el-avatar :size="85"  @error="errorHandler" :style="{background:'url('+')'}">
 
     </el-avatar>
 <div class="some-info">
-     <h2>{{info.author}}<br><span>{{info.motto}}</span></h2>
+     <h2>{{websiteInfo.author}}<br><span>{{websiteInfo.motto}}</span></h2>
     <p>
     <i class="el-icon-aim"></i>
     <i class="el-icon-mobile-phone"></i>
@@ -16,18 +16,27 @@
 </div>
 
 <el-collapse accordion>
-  <el-collapse-item v-for="item in hasChildren" :key="item.label">
+    <!-- hasChildren -->
+    <el-collapse-item v-for="item in hasChildren" :key="item.label">
     <template slot="title">
-     <p><i :class="item.icon"></i>{{item.label}}</p>
+    <p><i :class="item.icon"></i>{{item.first_cate_name}}</p>
     </template>
-    <div v-for="sub_item in item.children" :key="sub_item.label">{{sub_item.label}}</div>
-  </el-collapse-item>
-  
-  <el-collapse-item v-for="item in noChildren" :key="item.label">
+
+    <router-link v-for="sub_item in item.children" :key="sub_item.label" 
+    :to="{name:'cates',query:{first_cate_id:sub_item.first_cate_id,first_cate_name:sub_item.first_cate_name,
+        second_cate_id:sub_item.second_cate_id,second_cate_name:sub_item.second_cate_name}}"> 
+    <div class="sub-item" @click="drawer = false">
+    {{sub_item.second_cate_name}}
+    </div>
+    </router-link>
+    </el-collapse-item>
+
+    <!-- noChildren -->
+    <el-collapse-item class="noChildren" v-for="item in noChildren" :key="item.label" @click="drawer = false">
     <template slot="title">
-     <p><i :class="item.icon"></i>{{item.label}}</p>
+    <p><i :class="item.icon"></i>{{item.first_cate_name}}</p>
     </template>
-  </el-collapse-item>
+    </el-collapse-item>
 
 </el-collapse>
 
@@ -36,61 +45,48 @@
 </template>
 
 <script>
-import {headerData} from '../api/data'
-import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
+
 export default {
-     data() {
-      return {
+    data() {
+        return {
+        
         drawer:false,
-        info:{
-            avatar:require('../assets/bg2.jpg'),
-            author:'loster',
-            back:'当恩怨各一半，我该怎么圈览,当灯笼血红染，寻仇已太晚',
-            motto:'行者常至，为者常成!'
-            },
-        title: '',
-        menu:['1']
-        
-        
-      };
+        websiteInfo:[],
+        menu:[]
+        }
     },
-computed:{
-    noChildren(){
-        return this.menu.filter(item => !item.children)
-    },
-    hasChildren(){
-        return this.menu.filter(item =>  item.children)
-    },
-}, 
+    computed:{
+        noChildren(){
+            return this.menu.filter(item => !item.children)
+        },
+        hasChildren(){
+            return this.menu.filter(item =>  item.children)
+        },
+    }, 
+
+
 mounted() {
+    this.websiteInfo = JSON.parse(sessionStorage.getItem('info_data'))[0]
+    this.menu = JSON.parse(sessionStorage.getItem('menu_data'))
+   
     // 全局事件总线传递
     this.$bus.$on('drawer',(data) => {
             this.drawer = data
     })
    
-    const x = {...mapState('data',['headerData'])}
-    console.log(x,'wwwwwww')
-    console.log(this.$store.module)
-    headerData().then(res =>{
-        const {code,data} = res.data
-        if(code == 0){
-            let {menu,title} = data
-            this.menu = menu
-            this.title = title
-        }
-    })},
+},
 
-     methods: {
-      errorHandler() {
-        return true
-      }
-    },
-  
-    // 在组件销毁之前 解除占用 hello 事件
-    beforeDestroy() {
-        this.$bus.$off('drawer') // 解绑vm	上挂载的事件
+methods: {
+    errorHandler() {
+    return true
     }
-    }
+},
+
+// 在组件销毁之前 解除占用事件
+beforeDestroy() {
+    this.$bus.$off('drawer') // 解绑vm	上挂载的事件
+}
+}
 </script>
 
 <style lang="less" scoped>
@@ -133,6 +129,23 @@ mounted() {
 }
 .el-collapse p{
     font-weight: 800;
+    font-size:17px;
+    margin-left: 15px;
+    letter-spacing:5px;
+    padding-left: 10px;
 }
-
+.sub-item{
+    font-size:15px;
+    text-align:left;
+    padding:10px 15px;
+    border-radius: 9px;
+    background: #ffffff;
+    box-shadow:  6px 6px 12px #858585,
+             -6px -6px 12px #ffffff;
+    width: 70%;
+    margin: 10px;
+}
+/deep/.noChildren i{
+    display: none;
+}
 </style>

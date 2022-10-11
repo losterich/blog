@@ -4,16 +4,10 @@
 
 <el-col :xs="23" :sm="23" :md="15" :lg="11" :xl="11"  style="margin-top:15px">
 
-<el-card class="box">
-<el-breadcrumb separator-class="el-icon-arrow-right">
-<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-<el-breadcrumb-item>编程语言</el-breadcrumb-item>
-<el-breadcrumb-item>js</el-breadcrumb-item>
-</el-breadcrumb>
-</el-card>
+<Tags :tags="tags"/>
 
 <el-card class="essaybox"  shadow="never" :body-style="{padding:'8px'}">
-<EssayBar></EssayBar>
+<EssayBar :essayData="essayData"/>
 </el-card>
 </el-col>
 
@@ -25,13 +19,30 @@
 </template>
 
 <script>
-import EssayBar from "../components/EssayBar.vue"
-import SlideBar from "../components/SlideBar.vue"
+ 
+import {get_essay} from '../api/index'
 export default {
-    components: {
-        EssayBar,
-        SlideBar,
+  components: {
+      EssayBar:()=> import('../components/EssayBar.vue'),
+      SlideBar:()=> import('../components/SlideBar.vue'),
+      Tags:()=> import('../components/Tags.vue')
+  },
+  data(){
+    return {
+      second_cate_id:this.$route.second_cate_id,
+      essayData:'',
+      tags:this.$route.query
     }
+  },
+  mounted() {
+    console.log(this.tags)
+    let second_cate_id = this.second_cate_id
+    get_essay(second_cate_id).then(res =>{
+      console.log(res.data);
+      this.essayData = res.data.data
+    })
+  }
+
 }
 </script>
 
@@ -41,9 +52,6 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 80px;
-}
-.box{
-  margin-bottom:5px;
 }
 
 @media screen and (min-width:768px){

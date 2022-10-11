@@ -1,8 +1,8 @@
 <template>
 
    
-    <!-- 评论 -->
-    <el-card class="box">
+<!-- 评论 -->
+ <el-card class="box">
 
 <el-collapse accordion>
 <el-collapse-item :body-style="{border:'none'}">
@@ -24,6 +24,9 @@
 
 
 <el-col :xs="24" :sm="24" :md="9" :lg="9" :xl="9" class="comment-col">
+
+
+
 <div class="input-group">
 <input required="" type="text" name="text" autocomplete="off" class="input">
 <label class="user-label">称呼</label>
@@ -36,7 +39,7 @@
 </div>
 </el-col>
 
-<el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6" class="comment-col"><el-button type="primary">提交</el-button></el-col>
+<el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6" class="comment-col"><el-button type="primary" @click="submit">提交</el-button></el-col>
 
 </el-row>
 
@@ -61,23 +64,7 @@
 <p class="message-text">{{item.comment_content}}</p>
 
 
-<el-collapse accordion class="reply">
-<el-collapse-item >
-<template slot="title">
-<div >
-<i class="el-icon-s-promotion"></i> 回复
-</div>
-</template>
-<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"  class="comment-col reply-textarea">
-<div class="input-group textarea">
-<textarea required="" type="text" name="text" autocomplete="off" class="input" rows="7" cols="5">
-</textarea>
-<label class="user-label">评论</label>
-</div>
-</el-col>
-<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="comment-col"><el-button type="primary">发送</el-button></el-col>
-</el-collapse-item>
-</el-collapse>
+
 
 </el-col>
 
@@ -91,7 +78,20 @@
 <script>
 export default {
     name: 'comment',
-    props:['comments']
+    props:['comments'],
+    formParam:{
+      comment:'',
+      commenter:'',
+      email:''
+    },
+    methods:{
+      submit(){
+        this.$message({
+          type:'success',
+          message:'评论成功，评论筛选后将展示。'
+        })
+      }
+    }
 }
 </script>
 
@@ -103,7 +103,7 @@ export default {
   margin-top: 80px;
 }
 .box{
-  margin-bottom:5px;
+  margin:5px 0;
 }
 
 .comment{

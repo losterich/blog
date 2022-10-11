@@ -8,6 +8,6 @@ Vue.use(Vuex)
 import data from './data'
 export default new Vuex.Store({
    modules:{
-        data
+       data
    }
 })

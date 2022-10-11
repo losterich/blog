@@ -2,7 +2,13 @@
 
     <div>
 
-    <router-link  v-for="(item, index) in essayData" :key="index" :to="{name:'essay',param:{essay_id,}}">
+    <router-link  
+    v-for="(item, index) in essayData" 
+    :key="index" :to="{name:'essay',
+    query:{first_cate_id:item.first_cate_id,first_cate_name:item.first_cate_name,
+            second_cate_id:item.second_cate_id,second_cate_name:item.second_cate_name,
+            essay_id:item.essay_id,title:item.title},params:item}">
+        
         <el-card :body-style="{padding:'3px'}">
         <el-row>
         <el-col class="text" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -15,7 +21,7 @@
         <el-row>
         <el-tag effect="dark" v-for="tag_item in item.tags" :key="tag_item">{{tag_item}}</el-tag>
         </el-row>
-        <el-row><p>{{item.brief}}</p></el-row>
+        <el-row><p>{{item.content}}</p></el-row>
         </el-col>
         </el-row>
         </el-card>

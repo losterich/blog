@@ -3,7 +3,7 @@
     <div class="left">
     <router-link to="/" class="index">
     <div class="logo">
-    {{title}}
+    {{websiteInfo.website_name}}
     </div>
     </router-link>
     </div>
@@ -15,20 +15,30 @@
 
 
     <div class="dropdown hidden-sm-and-down">
+    <!-- noChildren -->
     <el-dropdown v-for="item in noChildren" :key="item.path">
     <span class="el-dropdown-link">
-    <i :class="item.icon"></i>{{item.label}}<i class=" el-icon--right"></i>
+    <i :class="item.icon"></i>{{item.first_cate_name}}<i class=" el-icon--right"></i>
     <hr>
     </span>
     </el-dropdown>
 
+    <!-- hasChildren -->
     <el-dropdown v-for="item in hasChildren" :key="item.path">
     <span class="el-dropdown-link">
-    <i :class="item.icon"></i>{{item.label}}<i class="el-icon-arrow-down el-icon--right"></i>
+    <i :class="item.icon"></i>{{item.first_cate_name}}<i class="el-icon-arrow-down el-icon--right"></i>
     <hr>
     </span>
     <el-dropdown-menu slot="dropdown" >
-    <router-link :to="{name:'cates',param:''}"> <el-dropdown-item :icon="sub_item.icon" v-for="(sub_item) in item.children" :key="sub_item.path">{{sub_item.label}}</el-dropdown-item></router-link>
+    <router-link 
+    v-for="(sub_item) in item.children"  
+    :to="{name:'cates',query:{first_cate_id:sub_item.first_cate_id,first_cate_name:sub_item.first_cate_name,
+        second_cate_id:sub_item.second_cate_id,second_cate_name:sub_item.second_cate_name}}"> 
+        <el-dropdown-item 
+        :icon="sub_item.icon" 
+        :key="sub_item.path">{{sub_item.second_cate_label}}
+        </el-dropdown-item>
+    </router-link>
     </el-dropdown-menu>
     </el-dropdown>
 
@@ -40,22 +50,18 @@
 </template>
 
 <script>
-// 数据
-import {headerData} from '../api/data'
-import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
 
 
-// 组件
-import Drawer   from './Drawer.vue'
 export default {
 name: 'Header',
 components: {
-    Drawer
+    Drawer:()=>import('../components/Drawer.vue'),
 },
 data() {
     return {
         title: '',
-        menu:['1']
+        menu:[],
+        websiteInfo:[]
     }
 }, 
 computed:{
@@ -65,21 +71,14 @@ computed:{
     hasChildren(){
         return this.menu.filter(item =>  item.children)
     },
+    
 }, 
+
 mounted() {
-   
-    const x = {...mapState('data',['headerData'])}
-    console.log(x,'wwwwwww')
-    console.log(this.$store.module)
-    headerData().then(res =>{
-        const {code,data} = res.data
-        if(code == 0){
-            let {menu,title} = data
-            this.menu = menu
-            this.title = title
-        }
-    })
-        
+    this.websiteInfo = JSON.parse(sessionStorage.getItem('info_data'))[0]
+    this.menu = JSON.parse(sessionStorage.getItem('menu_data'))
+
+    this.meun
     // 页面滚动，导航栏效果
     window.addEventListener('scroll', function () { 
         // 透明度变化
@@ -92,14 +91,16 @@ mounted() {
         this.to = scrollTop;
         header.classList.toggle("hidden", !(scroll < 0))
     })
+    
 },
 
 methods: {
+  
     // 全局事件总线，事件发布
     drawer(){
         let drawer = true
-        this.$bus.$emit('drawer',drawer)
-    }
+        this.$bus.$emit('drawer', drawer)
+    },   
 },
     
 }

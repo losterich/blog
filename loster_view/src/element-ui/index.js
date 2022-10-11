@@ -4,7 +4,7 @@ import Vue from 'vue'
 import {Container, Header, Main, Footer, Dropdown, DropdownItem,
     DropdownMenu, Card, Row, Col, Tag, Drawer, Collapse, CollapseItem,
     Avatar, Form, FormItem, Input, Button, Skeleton, Divider, Popover,
-    Breadcrumb, BreadcrumbItem,
+    Breadcrumb, BreadcrumbItem, Message, Backtop,
     } from 'element-ui'
 
     // elementUi 样式文件
@@ -36,3 +36,6 @@ Vue.component(Divider.name, Divider)
 Vue.component(Popover.name, Popover)
 Vue.component(Breadcrumb.name, Breadcrumb)
 Vue.component(BreadcrumbItem.name, BreadcrumbItem)
+Vue.component(Backtop.name, Backtop)
+
+Vue.prototype.$message = Message

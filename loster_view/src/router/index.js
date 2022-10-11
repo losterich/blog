@@ -5,7 +5,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // 导入组件
-import Home from '../view/Home.vue'
 import Essay from '../view/Essay.vue'
 import Cates from '../view/Cates.vue'
 
@@ -14,17 +13,24 @@ export default new VueRouter({
     routes:[
         {
             path: '/',
-            component:Home
+            component:() => import('../view/Main.vue'),
+            children:[
+                {
+                    path: '/',
+                    component:() => import('../view/Home.vue')
+                },
+                {   
+                    name:'essay',
+                    path: '/essay',
+                    component:Essay
+                },
+                {   
+                    name:'cates',
+                    path: '/cates',
+                    component:Cates
+                }
+            ],
         },
-        {   
-            name:'essay',
-            path: '/essay',
-            component:Essay
-        },
-        {   
-            name:'cates',
-            path: '/cates',
-            component:Cates
-        }
+       
     ],
 })

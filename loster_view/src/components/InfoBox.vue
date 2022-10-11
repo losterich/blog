@@ -4,10 +4,10 @@
     <div class="card">
     <div class="blob"></div>
     <span class="img">
-    <img :src="info.avatar">
-    <p>{{info.back}}</p>
+    <img :src="websiteInfo.avatar">
+    <p>{{websiteInfo.back_motto}}</p>
     </span>
-    <h2>{{info.author}}<br><span>{{info.motto}}</span></h2>
+    <h2>{{websiteInfo.author}}<br><span>{{websiteInfo.motto}}</span></h2>
     <p>
     <i class="el-icon-aim"></i>
     <i class="el-icon-mobile-phone"></i>
@@ -19,22 +19,35 @@
 </template>
 
 <script>
-
 export default {
     name: 'InfoBox',
     data(){
         return {
-            info:{
-                avatar:require('../assets/bg2.jpg'),
-                author:'loster',
-                back:'当恩怨各一半，我该怎么圈览,当灯笼血红染，寻仇已太晚',
-                motto:'行者常至，为者常成!'
-            }
+            websiteInfo:[]
         }
     },
-    components: {
-        
+    methods:{
+
     },
+    mounted(){
+        this.websiteInfo = JSON.parse(sessionStorage.getItem('info_data'))[0]
+    },
+    computed:{
+       
+
+    },
+    watch: {
+    // 监听vuex中数据变化的变化，最新赋值
+
+    info_data:{
+        handler(newValue, oldValue){
+            this.websiteInfo = newValue[0] 
+        }
+    },
+    
+
+},
+
 }
 </script>
 

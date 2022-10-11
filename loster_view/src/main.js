@@ -15,6 +15,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 // animate动画库
 import 'animate.css'
 
+ 
 Vue.config.productionTip = false
 
 // 插件注册
@@ -24,8 +25,19 @@ Vue.use(VueTypedJs)
 import http from 'axios'
 // 全局绑定axios
 Vue.prototype.$http = http
-// 引入mock
-import './api/mock'
+
+
+// 代码高亮
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css' //样式
+
+//创建v-highlight全局指令
+Vue.directive('highlight',function (el) {
+  let blocks = el.querySelectorAll('pre code');
+  blocks.forEach((block)=>{
+    hljs.highlightBlock(block)
+  })
+})
 
 new Vue({
   // 对象挂载，以便使用对象里的属性

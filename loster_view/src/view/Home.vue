@@ -3,9 +3,9 @@
   <el-card class="boxcard banner" shadow="never" :style="{backgroundImage:'url('+background+')'}">
 
   <div class="subtitle">
-  <p class="name" >{{essayData[0].author}}</p>
+  <p class="name" >{{'loster'}}</p>
   <p class="saying">
-  <!-- infinite loop -->
+
   <vue-typed-js :strings="mottos" :loop="true"  :typeSpeed="200" :backSpeed="40">
   <h2><span class="typing"></span></h2>
   </vue-typed-js> 
@@ -19,9 +19,11 @@
   <p id="down"></p>
 
   <el-row class="content">
+
   <EssayBox>
   <EssayBar :essayData="essayData"></EssayBar>
   </EssayBox>
+
   <SlideBar></SlideBar>
   </el-row>
   
@@ -31,67 +33,52 @@
 
 
 <script>
-// 导入组件
-import Header   from '../components/Header.vue'
-import SlideBar from '../components/SlideBar'
-import EssayBar from '../components/EssayBar.vue'
-import EssayBox from '../components/EssayBox'
+import {get_essay, get_mottos} from '../api/index'
+import {mapActions} from 'vuex'
 export default {
     name: 'Home',
     components: {
-        Header,
-        SlideBar,
-        EssayBox,
-        EssayBar,
+        Header:()=>import('../components/Header.vue'),
+        SlideBar:()=>import('../components/SlideBar.vue'),
+        EssayBox:()=>import('../components/EssayBox.vue'),
+        EssayBar:()=>import('../components/EssayBar.vue'),
     },
     data() {
       return {
           background:require('../assets/index2.jpg'),
-          mottos:['无穷的远方与无尽的人们，都与我有关  ——鲁迅', '当恩怨各一半，我该怎么圈览'],
-          essayData:[
-            {
-              author:'loster', 
-              date:'2022-9-15', 
-              title:'内网穿透其是就是在公司或者是家庭内部，建立的一种局域网络或者是办公网络，从而实现多台电脑之间可以进行资源的共享。',
-              view_number:'2121', 
-              likes:'2121', 
-              comment_number:'1212', 
-              tags:['nodejs','elementUI','vue'], 
-              brief:'内网穿透类的产品，需要先明确自己的一个使用目标，带宽一般都不会很高的，所以主要是穿透网站，还有一些后台小流量的一些使用场景。如果想用内网穿透上一些大流量的高清视频，以现在的技术条件还是不现实的。'
-            },
-            {
-              author:'loster', 
-              date:'2022-9-15', 
-              title:'内网穿透其是就是在公司或者是家庭内部，建立的一种局域网络或者是办公网络，从而实现多台电脑之间可以进行资源的共享。',
-              view_number:'2121', 
-              likes:'2121', 
-              comment_number:'1212', 
-              tags:['nodejs','elementUI','vue'], 
-              brief:'内网穿透类的产品，需要先明确自己的一个使用目标，带宽一般都不会很高的，所以主要是穿透网站，还有一些后台小流量的一些使用场景。如果想用内网穿透上一些大流量的高清视频，以现在的技术条件还是不现实的。'
-            },
-            {
-              author:'loster', 
-              date:'2022-9-15', 
-              title:'内网穿透其是就是在公司或者是家庭内部，建立的一种局域网络或者是办公网络，从而实现多台电脑之间可以进行资源的共享。',
-              view_number:'2121', 
-              likes:'2121', 
-              comment_number:'1212', 
-              tags:['nodejs','elementUI','vue'], 
-              brief:'内网穿透类的产品，需要先明确自己的一个使用目标，带宽一般都不会很高的，所以主要是穿透网站，还有一些后台小流量的一些使用场景。如果想用内网穿透上一些大流量的高清视频，以现在的技术条件还是不现实的。'
-            },
-            {
-              author:'loster', 
-              date:'2022-9-15', 
-              title:'内网穿透其是就是在公司或者是家庭内部，建立的一种局域网络或者是办公网络，从而实现多台电脑之间可以进行资源的共享。',
-              view_number:'2121', 
-              likes:'2121', 
-              comment_number:'1212', 
-              tags:['nodejs','elementUI','vue'], 
-              brief:'内网穿透类的产品，需要先明确自己的一个使用目标，带宽一般都不会很高的，所以主要是穿透网站，还有一些后台小流量的一些使用场景。如果想用内网穿透上一些大流量的高清视频，以现在的技术条件还是不现实的。'
-            },
-          ]
+          mottos:['这里有一个bug'],
+          essayData:[]
       }
     },
+    mounted() {
+      // 首页文章
+      get_essay().then(response => {
+          const essays = response.data.data
+          // 时间格式化
+          essays.forEach(item =>{
+              item.date = item.date.slice(0, 16)
+              item.date = item.date.replace('T',' ')
+          })
+          this.essayData = essays
+      }).catch(err =>{
+        console.error(err)
+      })
+      
+     
+    },
+    created(){
+       // 箴言
+       get_mottos().then(res =>{
+        let res_motto = res.data.data 
+        let array = []
+        res_motto.forEach(item =>{
+          array.push(item.motto)
+        })
+        this.mottos = array
+        console.log(this.mottos)
+      })
+    }
+    
 }
 </script>
 
@@ -132,7 +119,7 @@ export default {
     }
     .saying .typing {
       font-size: 1.2rem;
-      font-weight: 200;
+      font-weight: 500;
     }
 }
 
